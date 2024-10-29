@@ -2,55 +2,47 @@
 
 ## Table of Contents
 1. [Introduction to DevOps](#introduction-to-devops)
-2. [Software Development Life Cycle (SDLC)](#software-development-life-cycle-sdlc)
-3. [Methodologies](#methodologies)
-4. [Linux](#linux)
-5. [Git and Version Control](#git-and-version-control)
+2. [Linux](#linux)
+3. [Git and Version Control](#git-and-version-control)
    - [GitHub](#github)
    - [GitLab](#gitlab)
-6. [Networking for DevOps](#networking-for-devops)
-7. [Programming Languages](#programming-languages)
+4. [Networking for DevOps](#networking-for-devops)
+5. [Programming Languages](#programming-languages)
    - [Golang](#golang)
    - [Python Basics](#python-basics)
-8. [Shell/Bash Scripting](#shellbash-scripting)
-9. [Containerization with Docker](#containerization-with-docker)
-10. [Orchestration with Kubernetes](#orchestration-with-kubernetes)
+6. [Shell/Bash Scripting](#shellbash-scripting)
+7. [Containerization with Docker](#containerization-with-docker)
+8. [Orchestration with Kubernetes](#orchestration-with-kubernetes)
     - [CKA](#cka)
     - [CKAD](#ckad)
     - [CKS](#cks)
-11. [Helm](#helm)
-12. [Service Mesh](#service-mesh)
-13. [Cloud Platforms](#cloud-platforms)
+9. [Helm](#helm)
+10. [Service Mesh](#service-mesh)
+11. [Cloud Platforms](#cloud-platforms)
     - [AWS](#aws)
     - [Azure](#azure)
-14. [Configuration Management](#configuration-management)
+12. [Configuration Management](#configuration-management)
     - [Ansible](#ansible)
-15. [Infrastructure as Code](#infrastructure-as-code)
+13. [Infrastructure as Code](#infrastructure-as-code)
     - [Terraform](#terraform)
     - [Terraform Cloud](#terraform-cloud)
-16. [Secrets Management](#secrets-management)
+14. [Secrets Management](#secrets-management)
     - [HashiCorp Vault](#hashicorp-vault)
-17. [Continuous Integration/Continuous Deployment (CI/CD)](#continuous-integrationcontinuous-deployment-cicd)
+15. [Continuous Integration/Continuous Deployment (CI/CD)](#continuous-integrationcontinuous-deployment-cicd)
     - [Jenkins](#jenkins)
     - [GitLab CI](#gitlab-ci)
     - [ArgoCD](#argocd)
     - [GitHub Actions](#github-actions)
     - [AWS CodePipeline](#aws-codepipeline)
-18. [Monitoring and Logging](#monitoring-and-logging)
+16. [Monitoring and Logging](#monitoring-and-logging)
     - [Prometheus & Grafana](#prometheus--grafana)
     - [ELK Stack](#elk-stack)
     - [Zabbix](#zabbix)
-19. [Future Learning Plans](#future-learning-plans)
+17. [Future Learning Plans](#future-learning-plans)
 
 ## Introduction to DevOps
 - Overview of DevOps principles and practices.
 - Importance of collaboration between development and operations.
-
-## Software Development Life Cycle (SDLC)
-- Explanation of SDLC phases: planning, development, testing, deployment, and maintenance.
-
-## Methodologies
-- Agile, Scrum, Kanban, etc.
 
 ## Linux
 - Basics of Linux commands and file systems.
@@ -145,4 +137,3 @@
 
 ## Future Learning Plans
 - Outline topics or tools you plan to learn next.
-
