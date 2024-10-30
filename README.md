@@ -136,4 +136,4 @@
 - Monitoring and alerting with Zabbix.
 
 ## Future Learning Plans
-- Outline topics or tools you plan to learn next.
+- Will decide later What to learn next.
