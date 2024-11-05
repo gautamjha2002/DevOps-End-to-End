@@ -98,5 +98,4 @@ scp is a basic command to securely copy files and directories from one machine t
 `rsync -avz user@remote_host:/remote/file.txt /local/directory`
 4. Sync a directory and delete files on the destination that don’t exist on the source  
 `rsync -avz --delete /local/directory/ user@remote_host:/remote/directory/`
-
-
+---
