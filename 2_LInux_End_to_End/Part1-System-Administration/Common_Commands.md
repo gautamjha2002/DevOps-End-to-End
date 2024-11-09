@@ -14,7 +14,9 @@
 - `ls` 
 - `ls -l` for long listing
 - `ls -lt` for getting last modified time also 
+- `ls -ltr` to get the reverse of `lt`
 - `ls -lh` for long listing with human readable format
+- `ls -a` To see hidden files
 5. How to clear linux terminal ?
 - `clear`
 - `ctrl +l`
@@ -270,3 +272,9 @@
 95. How to delete a user or group
 - `userdel <user`
 - `groupdel <group>`
+
+96. How to identify the OS ?
+- `uname`
+
+97. How to check inode number (id of file this never changes once file is created or modified or renamed) 
+- `ls -i`
