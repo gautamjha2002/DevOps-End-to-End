@@ -3,10 +3,10 @@
 ## Table of Contents
 1. [Introduction to DevOps](#introduction-to-devops)
 2. [Linux](#linux)
-3. [Git and Version Control](#git-and-version-control)
+3. [Networking for DevOps](#networking-for-devops)
+4. [Git and Version Control](#git-and-version-control)
    - [GitHub](#github)
    - [GitLab](#gitlab)
-4. [Networking for DevOps](#networking-for-devops)
 5. [Programming Languages](#programming-languages)
    - [Golang](#golang)
    - [Python Basics](#python-basics)
@@ -48,15 +48,15 @@
 - Basics of Linux commands and file systems.
 - Administration skills and common tools.
 
+## Networking for DevOps
+- Understanding networking concepts and protocols essential for DevOps.
+
 ## Git and Version Control
 ### GitHub
 - Using GitHub for version control and collaboration.
 
 ### GitLab
 - GitLab features and CI/CD integration.
-
-## Networking for DevOps
-- Understanding networking concepts and protocols essential for DevOps.
 
 ## Programming Languages
 ### Golang
