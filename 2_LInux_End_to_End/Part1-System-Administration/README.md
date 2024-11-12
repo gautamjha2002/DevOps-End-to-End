@@ -432,3 +432,291 @@ we can just read the content from files the use pipe and gzip it in another file
 - Used for easier portability and less storage.
 - Majorly used for taking backups
 
+**Options for tar**
+- `-c` :-  Create archive from a file or directory.
+- `-x` :- Extract archive
+- `-r` :-  Append file to archive
+- `-t` :- List the content to archive
+- `-z` :- Compress with gzip command
+- `-j` :- Compress with bzip2 command
+- `-v` :- Show the progress of archive files
+- `-f` :- Filename of archived file
+
+**Some Examples**
+1. Create an archive 
+- `tar -cvf archive.tar <file1> <file2>`
+2. List archive files
+- `tar -tvf archive.tar`
+3. Extract the archive
+- `tar -xvf archive.tar`
+4. Append the file in archive
+- `tar -rvf archive.tar <file3>`
+5. Archive and compress with gzip
+- `tar -czvf archive.tar.gz <file1> <file2>`
+6. Archive and compresss with bzip2
+- `tar -cjvf archive.tar.bz2 <file1> <file2>`
+
+---
+# Process (ps) commands
+1. List the process along with info 
+- `ps`
+2. List process of all user
+- `ps -a`
+3. Extended version of process command 
+- `ps -e`
+4. Full version of process command
+- `ps -f`
+---
+# at command
+
+We can schedule a process to run at particular time using `at` command.
+
+**Syntax** `at time date command`
+
+**Examples**
+
+1. Execute a process now
+`echo "hi" | at now`
+2. Schedule a process after 10 min
+`echo "Hello" | at now + 10 min`
+3. We can also schedule a process at certain time
+- `at hh:mm am/pm`
+- `at hh:mm`
+4. We can also schedule a process at certain time and date
+- `at 10:15 AM Apr2`
+- `at 10:15 AM 4/2`
+- `at 10:15 AM 4/2/2025`
+- `at 10:15 AM 2.4.25`
+
+5. Instead of explicitly defining date and time we can give identities also.
+- `at now`
+- `at now + 10 min`
+- `at now + 10 hours`
+- `at now + 10 week`
+- `at now + 10 month`
+- `at wednesday`
+- `at november`
+- `at today`
+- `at noon`
+- `at tomorrow`
+
+6. `atq` :- This command list all the schedule process
+7. `atrm jobno.` :- This command removes the scheduled process.
+
+---
+
+# cronjobs
+
+- cron is a software utility which is also known as cronjob is a time based job scheduler.
+- Users Who want to set up and maintain software environment uses cron to schedule jobs to run priodically at fixed times, days, dates, or interval.
+
+**crontab**
+
+- used to schedule commands to be executed periodically.
+- crontab uses a daemon called crond which keeps running in background and checks once a minute to see if any of the scheduled jobs need to be executed.
+
+**commands**
+- `crontab -l` :- To show list of all current jobs.
+- `crontab -e` :- To edit or add new jobs
+- `crontab -r` :- To remove the job.
+
+## cronjob syntax and format
+
+**Syntax** 
+- `* * * * * command`  :- all these 5 start is for representing Schedule expression
+
+**Schedule Expression**
+![Cron job Schedule expression](Assets/Cronjob.png)
+
+**Some Symbols to use in crontab**
+`,` :- For seperation
+`/` :- repetition
+`-` :- range
+
+**Some Examples**
+
+1. `0 17 6 4 3 ls` :- Here ls command will execute at 5PM, 6th day of month, at april, on wednesday.
+
+2. `0 17-18 6 4 3 ls` :- execute ls between 5PM to 6PM
+
+3. `0 5,17 6 4 3 ls` :- execute ls at 5PM and 5 AM
+
+4. `* * /1-31 * * ls` :- execute ls on repetition from day 1 to 31 of month
+
+If we hadn't put `/` then it will execute task between day 1 and 31 one time at any day. 
+
+--- 
+
+# Systemd services
+
+## What is Systemd?
+Systemd is a system and service manager for Linux. It’s the first process started by the Linux kernel when the system boots, taking over from init, the traditional init system, to initialize and manage services and resources. Systemd organizes and runs all processes as units, which allows it to manage resources more flexibly and efficiently
+
+## Why Do We Need Systemd?
+
+Systemd simplifies booting and managing services by:
+
+1. Parallelizing Service Starts: Starts services in parallel to speed up the boot process.
+2. Dependency Management: Services can be defined with dependencies, helping ensure they start in the right order.
+3. Unified Configuration and Management: All service configuration files are in one place, under `/etc/systemd/system`.
+4. Centralized Logging: Logs all service output in `journalctl`, simplifying monitoring and troubleshooting
+
+## Key Components of Systemd
+
+- **Units:** A generic term for any service, socket, device, mount point, or other resource managed by systemd.
+- **Service Units:** The `.service` files that define services.
+- **Targets:** A way to group units, similar to run levels in the old init system, like `multi-user.target` or `graphical.target`.
+- **Journal:** A logging component that provides logs for everything managed by systemd.
+
+## Basic Commands in Systemd
+
+1. Starting a Service:
+- `sudo systemctl start <service-name>`
+
+2. Stopping a Service:
+- `sudo systemctl stop <service-name>`
+
+3. Restarting a Service:
+- `sudo systemctl restart <service-name>`
+
+4. Enabling a Service at Boot:
+- `sudo systemctl enable <service-name>`
+
+5. Disabling a Service from Starting at Boot:
+- `sudo systemctl disable <service-name>`
+
+6. Checking the Status of a Service:
+- `sudo systemctl status <service-name>`
+
+7. Viewing Logs for a Service:
+- `sudo journalctl -u <service-name`
+
+## Use Case: Creating a Systemd Service
+
+To create a custom service, you’ll need to create a `.service` file in `/etc/systemd/system/`. For example, let’s create a service for a simple Python script.
+
+**Steps** 
+1.  Create the Python Script
+
+- Create a simple script to serve as our example. Save this as /usr/local/bin/hello.py:
+
+```python
+#!/usr/bin/env python3
+import time
+
+while True:
+    print("Hello from systemd service!")
+    time.sleep(5)
+
+```
+- Make the script executable:
+`sudo chmod +x /usr/local/bin/hello.py`
+
+2. Create the Systemd Service File
+- Create a new file in `/etc/systemd/system` called `hello.service`:
+`sudo vi /etc/systemd/system/hello.service`
+
+- Add the following content:
+```bash 
+[Unit]
+Description=Hello Python Systemd Service
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/hello.py
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Here’s a breakdown of the file sections:
+
+- **[Unit]:** Defines the service’s metadata and dependencies.
+
+    * `Description:` A brief description.
+    * `After:` Specifies when the service should start (after network.target in this case).
+- **[Service]:** The service settings.
+
+    * `ExecStart:` The command to start the service.
+    * `Restart:` Defines the restart behavior. always restarts the service if it fails.
+    * `User:` The user account to run the service. Here, it's root, but you can specify another user.
+- **[Install]:** Defines when the service should run.
+
+    * `WantedBy:` Specifies that the service should start in multi-user mode (non-graphical).
+
+3. Enable and Start the Service  
+Now that the service file is in place, we need to enable and start it.
+
+- **Reload Systemd Daemon:** This is necessary to make Systemd recognize the new service file.
+`sudo systemctl daemon-reload`
+- **Enable the Service**
+`sudo systemctl enable hello.service`
+- **Start the Service:**
+`sudo systemctl start hello.service`
+- **Check the Status:**
+`sudo systemctl status hello.service`
+
+## Summary of commands 
+
+| Command                          | Description                                    |
+|----------------------------------|------------------------------------------------|
+| `sudo systemctl start <service>` | Starts the specified service                   |
+| `sudo systemctl stop <service>`  | Stops the specified service                    |
+| `sudo systemctl restart <service>` | Restarts the specified service               |
+| `sudo systemctl enable <service>` | Enables the service to start on boot          |
+| `sudo systemctl disable <service>` | Disables the service from starting on boot   |
+| `sudo systemctl status <service>` | Shows the current status of the service       |
+| `sudo journalctl -u <service>`   | Shows logs for the specified service           |
+
+
+Systemd is an incredibly powerful tool for managing services, with additional capabilities like setting environment variables, configuring timeouts, setting resource limits, and isolating services in a chroot environment. This approach gives administrators fine-grained control over the Linux system and services.
+
+---
+
+# LVM (Logical Volume Manager)
+
+- LVM stands for **Logical Volume Manager** 
+- LVM introduces extra layer of abstractionon disk present on those linux system and file system present on those disks.
+
+### Use of LVM 
+- We can create filesystem that can extend across multiple storage devices with LVM, we can agggrigate multiple storage devices into a single logical volume.
+- LVM allows you to extend or shrink filesystem in realtime while data is online and fully accesssible without LVM we have to format the storage devices.
+- We can give LVM a  nome of our choice.
+
+### Layer of abstraction in LVM 
+
+![Layer of Abstraction](Assets/LVM_Abstraction_Layer.png)
+
+### LVM commands
+1. Create physical volume
+- `pvcreate /dev/vdb1 /dev/vdb2 ...`
+2. Display created physical volume
+- `pvs`
+- `pvdisplay`
+3. Display only particular physical volume
+- `pvdisplay /dev/vdb1`
+4. Create volume Group
+- `vgcreate vg1 /dev/vdb1 /dev/vdb2`
+5. Create volume group of particular size 
+- `vgcreate -s 2G /dev/vdb1`
+6. Display volume group 
+- `vgs`
+- `vgdisplay`
+7. Extend volume group
+- `vgextend vg1 /dev/vdb1`
+8. Remove a volume group
+- `vgremove vg1`
+9. Create Logical Volume 
+- `lvcreate -L 10G vg1 -n lv1` :- Capital **"L"** is used to give actual size of logical volume.
+- `lvcreate -l 10 vg1 -n lv2` :- Small **"l"** is used to create Logical volume of size given in  percentage of volume group.
+
+10. Extend the Logical volume
+- `lvextend -L +100M /dev/vg1/lv1`
+11. reduce the Logical Volume
+- `lvreduce -L -110M /dev/vg1/lv1` :- 100Mb is reduced from the logical volume.
+- `lvreduce -L 100M /dev/vg1/lv1` :- Shrinked to 100Mb
+12. Remove the logical volume
+- `lvremove /dev/vg1/lv1`
+
